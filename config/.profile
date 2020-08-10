@@ -9,7 +9,7 @@
 #umask 022
 
 [ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-[ -e ~/.asdf ] && . $HOME/.asdf/.asdf.sh
+[ -e ~/.asdf ] && . $HOME/.asdf/asdf.sh
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

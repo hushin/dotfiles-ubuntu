@@ -30,7 +30,7 @@ source ~/.profile
 [ -e ~/.asdf ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
-. $HOME/.asdf/.asdf.sh
+. $HOME/.asdf/asdf.sh
 
 # node
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
