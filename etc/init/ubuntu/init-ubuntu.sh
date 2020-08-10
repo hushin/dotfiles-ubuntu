@@ -5,12 +5,15 @@ has() {
 }
 dir_name=$(cd $(dirname $0); pwd)
 
-# brew
+# apt
+sudo apt-get install -y build-essential curl file git
 
+# brew
 if ! has "brew"; then
   # https://brew.sh/
   echo "Install homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 brew update
 
