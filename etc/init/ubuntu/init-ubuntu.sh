@@ -40,3 +40,17 @@ asdf plugin update --all
 
 # .tool-versions
 asdf install
+
+# tmux
+[ -e ~/.tmux-powerline ] || git clone https://github.com/erikw/tmux-powerline.git ~/.tmux-powerline
+
+# gem
+gem install git-browse-remote
+
+# emacs
+brew install emacs
+[ -e ~/.emacs.d ] || git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+cd ~/.emacs.d
+git fetch --prune
+git checkout --force develop
+git reset --hard origin/develop
