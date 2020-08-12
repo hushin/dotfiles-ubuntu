@@ -7,6 +7,7 @@ abbr -a gco 'git checkout'
 abbr -a gcb 'git checkout -b'
 abbr -a gcm 'git checkout master'
 abbr -a agh 'ag --hidden'
+abbr -a tig-review "tig --reverse -w (git merge-base origin/master HEAD)...HEAD"
 
 type -qa tac || abbr -a tac 'tail -r'
 
@@ -44,21 +45,13 @@ function copy-history -a historyNum
   history | tail -n $historyNum | pbcopy
 end
 
-function joinpdf
-  mkdir -p formatted
-  "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" --output formatted/output(date "+%Y%m%d_%H%M%S").pdf $argv
-end
-
-function hlcopy -d "Code highlighting" --argument language theme
-  set -q language[1] || set language ts
-  set -q theme[1] || set theme Zenburn
-  pbpaste | highlight -S $language -s $theme -O rtf -k 'Source Han Code JP' -K 24 | pbcopy
-end
-
 # https://github.com/junegunn/fzf/wiki/Examples-(fish)
 function fssh -d "Fuzzy-find ssh host via ag and ssh into it"
-  ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf --preview='' | read -l result; and ssh "$result"
-  commandline -f repaint
+  ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf | read -l result; and ssh "$result"
+end
+
+function fs -d "Switch tmux session"
+  tmux list-sessions -F "#{session_name}" | fzf | read -l result; and tmux switch-client -t "$result"
 end
 
 function checkout-git-branch -d "Fuzzy-find and checkout a branch"
@@ -128,4 +121,9 @@ function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName
   mkdir -p $path
   mv $dirName $path
   cd "$path/$dirName"
+end
+
+function gwt -d "git work tree" -a branch
+  set -l gitCdupDir (git rev-parse --show-cdup)
+  git worktree add {$gitCdupDir}git-worktrees/$branch -b $branch
 end

@@ -24,3 +24,7 @@ bash -c 'cat <<EOF > $HOME/.gitconfig.local
 EOF
 '
 ```
+
+## TODO
+
+* [ ] pbcopy

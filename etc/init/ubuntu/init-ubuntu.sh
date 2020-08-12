@@ -54,3 +54,6 @@ cd ~/.emacs.d
 git fetch --prune
 git checkout --force develop
 git reset --hard origin/develop
+
+# fish
+fish $dir_name/init-fish.fish

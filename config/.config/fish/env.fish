@@ -1,22 +1,9 @@
 # fzf
 set -x FZF_DEFAULT_COMMAND 'ag -g "" --hidden --ignore ".git"'
-set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border --ansi --inline-info --preview 'head -100 {}'"
+set -x FZF_DEFAULT_OPTS "--height 70% --layout=reverse --border --ansi --inline-info"
 
 # editor
 set -x EDITOR 'emacsclient -t -a ""'
-
-# homebrew
-set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
-
-# golang
-set -x GOPATH $HOME/.go
-set -x PATH $PATH $GOPATH/bin
-
-# ruby
-set -x PATH /usr/local/opt/ruby/bin $PATH
-if which ruby >/dev/null; and which gem >/dev/null
-  set -x PATH (ruby -r rubygems -e 'puts Gem.dir')/bin $PATH
-end
 
 # theme
 # bobthefish

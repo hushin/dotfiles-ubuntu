@@ -28,3 +28,19 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+# go
+export GOPATH=$HOME/go
+PATH="$GOPATH/bin:$PATH"
+
+# ruby
+if type ruby >/dev/null && type gem >/dev/null ; then
+  PATH="$(ruby -r rubygems -e 'puts Gem.dir')/bin:$PATH"
+fi
+
+export SHELL=/bin/bash
+SHELL=`which fish`
+case $- in
+    *i*) exec "$SHELL";;
+      *) return;;
+esac
