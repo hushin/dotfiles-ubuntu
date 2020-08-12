@@ -2,14 +2,10 @@
 set -x FZF_DEFAULT_COMMAND 'ag -g "" --hidden --ignore ".git"'
 set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border --ansi --inline-info --preview 'head -100 {}'"
 
-# Add ~/bin to PATH
-set -x PATH ~/bin $PATH
-
 # editor
 set -x EDITOR 'emacsclient -t -a ""'
 
 # homebrew
-set -x HOMEBREW_CASK_OPTS "--appdir=/Applications"
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
 # golang
