@@ -28,3 +28,4 @@ EOF
 ## TODO
 
 * [ ] pbcopy
+* [ ] browser
