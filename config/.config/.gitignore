@@ -10,5 +10,4 @@
 /fish/functions
 /fish/fishd.*
 /fish/fish_variables
-!/memo
 !tmux
