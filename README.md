@@ -4,7 +4,7 @@
 
 ```sh
 cd ~
-git clone git@github.com:hushin/dotfiles-ubuntu.git .dotfiles
+git clone https://github.com/hushin/dotfiles-ubuntu.git .dotfiles
 ```
 
 ## Initialize
