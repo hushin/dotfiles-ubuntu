@@ -38,6 +38,11 @@ if type ruby >/dev/null && type gem >/dev/null ; then
   PATH="$(ruby -r rubygems -e 'puts Gem.dir')/bin:$PATH"
 fi
 
+# npm
+if type npm >/dev/null ; then
+    PATH="$(npm bin -g):$PATH"
+fi
+
 export SHELL=/bin/bash
 SHELL=`which fish`
 case $- in
