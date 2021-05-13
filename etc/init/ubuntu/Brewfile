@@ -1,5 +1,4 @@
 brew "ag"
-brew "awscli"
 brew "bash"
 brew "bat"
 brew "coreutils"
