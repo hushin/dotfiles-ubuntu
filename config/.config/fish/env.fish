@@ -9,6 +9,7 @@ set -x EDITOR 'emacsclient -t -a ""'
 # bobthefish
 set -g theme_color_scheme zenburn
 set -g theme_display_date no
+set -g theme_display_cmd_duration no
 
 # gabbr
 set -U gabbr_config $HOME/.config/fish/gabbr.conf
