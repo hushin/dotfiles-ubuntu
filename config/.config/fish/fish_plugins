@@ -3,7 +3,7 @@ jethrokuan/fzf
 jethrokuan/z
 laughedelic/brew-completions
 oh-my-fish/theme-bobthefish
-tasuten/cd-gitroot-fish
 tsub/fzf_ghq
 yujiod/fish-fzf_recentd
 ryotako/fish-global-abbreviation
+mollifier/fish-cd-gitroot
