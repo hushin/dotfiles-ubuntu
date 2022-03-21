@@ -78,6 +78,18 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(defun macp ()
+  (eq system-type 'darwin))
+(defun linuxp ()
+  (eq system-type 'gnu/linux))
+(defun bsdp ()
+  (eq system-type 'gnu/kfreebsd))
+(defun winp ()
+  (eq system-type 'windows-nt))
+(defun wslp ()
+  (and (eq system-type 'gnu/linux)
+       (file-exists-p "/proc/sys/fs/binfmt_misc/WSLInterop")))
+
 ;; auto save
 (setq auto-save-default t)
 
@@ -93,3 +105,45 @@
 (setq evil-snipe-override-evil-repeat-keys nil)
 (setq doom-localleader-key ",")
 ;; (setq doom-localleader-alt-key "M-,")
+
+;; mozc
+(use-package mozc
+  :if (wslp)
+  :config
+  (setq mozc-helper-program-name "mozc_emacs_helper.exe")
+  (setq mozc-helper-process-timeout-sec 10)
+  ;; Windows の mozc では、セッション接続直後 directモード になるので hiraganaモード にする
+  (advice-add 'mozc-session-execute-command
+              :after (lambda (&rest args)
+                       (when (eq (nth 0 args) 'CreateSession)
+                         ;; (mozc-session-sendkey '(hiragana)))))
+                         (mozc-session-sendkey '(Hankaku/Zenkaku))))))
+(use-package mozc-im
+  :if (wslp)
+  :after mozc
+  :config
+  ;;(bind-key "<zenkaku-hankaku>" #'toggle-input-method)
+  ;; IME有効時のタイトル設定
+  (defun my-mozc-leim-title ()
+    "Return a title string (with image icon) when mozc IM is enabled."
+    (let ((icon (expand-file-name
+                 ;; 解像度に応じてアイコンの大きさを変える
+                 (format "images/mozc-icon-%d.png"
+                         (if (> (display-pixel-height) 2000) 32 16))
+                 user-emacs-directory)))
+      (if (and (image-type-available-p 'png) (file-exists-p icon))
+          (progn
+            ;; 画像表示のために `current-input-method-title' のテキストプロパティを有効にする
+            (put 'current-input-method-title 'risky-local-variable t)
+            (propertize "あ" 'display `(image :type png :file ,icon :ascent center
+                                              :mask heuristic :margin (2 . 0))))
+        "[あ]")))
+  (setq mozc-leim-title (my-mozc-leim-title))
+  (setq default-input-method "japanese-mozc-im"))
+
+(use-package mozc-popup :disabled t
+  :if (wslp)
+  :after mozc
+  :config
+  ;; 変換候補をポップアップで表示する
+  (setq mozc-candidate-style 'popup))
