@@ -24,7 +24,7 @@
 	merged-list = !git branch -r --list --merged
 	no-merged-list = "!git branch -r --list --no-merged | grep -v '*' | xargs -Ibranch git log -1 --pretty=format:'|branch|%an|%ad|%s|%n' --date=short branch | cat"
   # https://qiita.com/Yinaura/items/30992f25b87f76af3ba2
-  force-pull = !git fetch && git reset --hard origin/`branch-name`
+  force-pull = !git fetch && git reset --hard origin/`git branch-name`
 	# https://qiita.com/yuichielectric/items/84cd61915a1236f19221
 	rprune = remote prune origin
 	br = !gh browse
