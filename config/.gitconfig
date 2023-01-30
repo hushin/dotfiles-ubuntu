@@ -23,15 +23,16 @@
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	merged-list = !git branch -r --list --merged
 	no-merged-list = "!git branch -r --list --no-merged | grep -v '*' | xargs -Ibranch git log -1 --pretty=format:'|branch|%an|%ad|%s|%n' --date=short branch | cat"
+  # https://qiita.com/Yinaura/items/30992f25b87f76af3ba2
+  force-pull = !git fetch && git reset --hard origin/`branch-name`
 	# https://qiita.com/yuichielectric/items/84cd61915a1236f19221
 	rprune = remote prune origin
-	# http://motemen.hatenablog.com/entry/2014/06/05/released-git-browse-remote-0-1-0
-	br = browse-remote
+	br = !gh browse
   # https://tech-broccoli.life/articles/engineer/recommend-git-aliases/
   see = !gh repo view --web
 	# https://qiita.com/awakia/items/f14dc6310e469964a8f7
   showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
-  openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
+  openpr = "!f() { gh browse -- `git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; }; f"
 
   pushf = push --force-with-lease
   # https://motemen.hatenablog.com/entry/2022/04/git-aliases
