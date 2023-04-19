@@ -1,13 +1,11 @@
 abbr -a ta 'tig --all'
-abbr -a tst 'tig status'
+abbr -a ts 'tig status'
 abbr -a g 'git'
 abbr -a gsh 'git show'
 abbr -a gdc 'git diff --cached'
-abbr -a gco 'git checkout'
+abbr -a gsw 'git checkout'
 abbr -a gcb 'git checkout -b'
-abbr -a gcm 'git checkout master'
 abbr -a agh 'ag --hidden'
-abbr -a tig-review "tig --reverse -w (git merge-base origin/master HEAD)...HEAD"
 
 type -qa tac || abbr -a tac 'tail -r'
 
@@ -31,10 +29,17 @@ function ef
 end
 
 function git-review
-  set -l N (git log --pretty=format:"%H %h" | grep -n $argv | cut -d : -f 1)
+  # TODO `git default-branch` がうまく処理できない
+  set -l N (git log --pretty=format:"%H %h" | grep -n (git merge-base origin/`git default-branch` HEAD) | cut -d : -f 1)
   git log --decorate --stat --reverse -p -$N
 end
 abbr -a  gre 'git-review'
+
+function tig-review2
+  # TODO `git default-branch` がうまく処理できない
+  set -l base git merge-base origin/(git default-branch) HEAD
+  tig --reverse -w $base...HEAD
+end
 
 function touchp
   mkdir -p (dirname "$argv") && touch "$argv"
