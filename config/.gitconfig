@@ -1,6 +1,7 @@
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore
+	sshCommand = ssh.exe
 [include]
 	path = ~/.gitconfig.local
 [alias]

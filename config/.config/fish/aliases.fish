@@ -110,7 +110,7 @@ end
 function crrepo
   cd-gitroot
   set -l repoName (string match -r '[^/]*/[^/]*$' "$PWD")
-  hub create $argv $repoName
+  gh repo create $repoName --source=. $argv
 end
 
 function move-to-bitbucket -d "github to bitbucket ghq directory" -a dirName

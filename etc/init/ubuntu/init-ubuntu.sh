@@ -36,6 +36,8 @@ git checkout "$(git describe --abbrev=0 --tags)"
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 [ -e ~/.gnupg/crls.d ] || bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
 
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+
 asdf plugin update --all
 
 # .tool-versions
