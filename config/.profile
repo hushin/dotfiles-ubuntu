@@ -33,10 +33,20 @@ fi
 export GOPATH=$HOME/go
 PATH="$GOPATH/bin:$PATH"
 
+# rust
+. "$HOME/.cargo/env"  
+. "$HOME/.cargo/env"
+
+# deno
+. "$HOME/.deno/env"
+# local env
+. "$HOME/.local/bin/env"
+
 # npm
 if type npm >/dev/null ; then
     PATH="$(npm bin -g):$PATH"
 fi
+BROWSER=wslview
 
 # Configure ssh forwarding
 export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
