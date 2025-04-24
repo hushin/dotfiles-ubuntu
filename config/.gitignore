@@ -1,1 +1,6 @@
 git-worktrees/*
+ref-docs/
+ai-out/
+ai-docs/
+.clinerules
+memory-bank/
