@@ -5,6 +5,8 @@ set -x FZF_DEFAULT_OPTS "--height 70% --layout=reverse --border --ansi --inline-
 # editor
 set -x EDITOR 'emacsclient -t -a ""'
 
+set -x BROWSER 'wslview'
+
 # theme
 # bobthefish
 set -g theme_color_scheme zenburn

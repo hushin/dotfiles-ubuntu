@@ -4,3 +4,4 @@ ai-out/
 ai-docs/
 .clinerules
 memory-bank/
+**/.claude/settings.local.json

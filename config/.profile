@@ -34,7 +34,6 @@ export GOPATH=$HOME/go
 PATH="$GOPATH/bin:$PATH"
 
 # rust
-. "$HOME/.cargo/env"  
 . "$HOME/.cargo/env"
 
 # deno
